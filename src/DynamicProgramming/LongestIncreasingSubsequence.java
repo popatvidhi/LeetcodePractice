@@ -1,0 +1,29 @@
+package DynamicProgramming;
+
+import java.util.*;
+
+public class LongestIncreasingSubsequence {
+
+    public static void main(String[] args){
+        int[] nums = new int[]{10,9,2,5,3,7,101,18};
+        int res = lengthOfLIS(nums);
+        System.out.println(res);
+    }
+
+    public static int lengthOfLIS(int[] nums) {
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, 1);
+        for(int i = nums.length - 1; i >= 0; i--){
+            for(int j = i + 1; j < nums.length; j++){
+                if(nums[i] < nums[j]){
+                    dp[i] = Math.max(dp[i], 1+dp[j]);
+                }
+            }
+        }
+        int max = 0;
+        for(int i = 0; i < dp.length; i++){
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
+}
