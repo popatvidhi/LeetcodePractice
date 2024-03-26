@@ -5,7 +5,7 @@ import java.util.Stack;
 public class BackspaceStringCompare {
 
     public static void main(String args[]){
-        boolean res = backspaceCompare("ab#c", "ad#c");
+        boolean res = backspaceCompare("ab##", "c#d#");
         System.out.println(res);
         boolean res1 = backspaceCompareCounting("#c", "#c");
         System.out.println(res1);
@@ -35,29 +35,47 @@ public class BackspaceStringCompare {
     }
 
     public static boolean backspaceCompareCounting(String s, String t) {
-        int[] count = new int[26];
+        int i = s.length() - 1, j = t.length() - 1;
+        int backspaceCountS = 0, backspaceCountT = 0;
 
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == '#'){
-                if(i > 0)
-                    count[s.charAt(i - 1) - 'a']--;
-            }else{
-                count[s.charAt(i) - 'a']++;
+        while (i >= 0 || j >= 0) {
+            // Skip over backspace characters
+            while (i >= 0 && (s.charAt(i) == '#' || backspaceCountS > 0)) {
+                if (s.charAt(i) == '#') {
+                    backspaceCountS++;
+                } else {
+                    backspaceCountS--;
+                }
+                i--;
             }
-        }
-        for(int i = 0; i < t.length(); i++){
-            if(t.charAt(i) == '#'){
-                if(i > 0)
-                    count[t.charAt(i - 1) - 'a']--;
-            }else{
-                count[t.charAt(i) - 'a']--;
+
+            while (j >= 0 && (t.charAt(j) == '#' || backspaceCountT > 0)) {
+                if (t.charAt(j) == '#') {
+                    backspaceCountT++;
+                } else {
+                    backspaceCountT--;
+                }
+                j--;
             }
-        }
-        for(int i = 0; i < 26; i++){
-            if(count[i] != 0){
-                return false;
+
+            // Compare characters at the current positions
+            if (i >= 0 && j >= 0) {
+                if (s.charAt(i) != t.charAt(j)) {
+                    return false;
+                }
+            } else {
+                // Check if both strings are fully processed
+                if (i >= 0 || j >= 0) {
+                    return false;
+                }
             }
+
+            // Move to the previous characters in both strings
+            i--;
+            j--;
         }
+
         return true;
+
     }
 }

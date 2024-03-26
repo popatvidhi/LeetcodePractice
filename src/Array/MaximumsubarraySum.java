@@ -1,6 +1,6 @@
 package Array;
 
-public class Maximumsubarray {
+public class MaximumsubarraySum {
 
     public static void main(String args[]){
         int res = 0;

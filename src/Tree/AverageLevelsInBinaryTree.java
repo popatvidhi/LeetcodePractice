@@ -31,7 +31,6 @@ public class AverageLevelsInBinaryTree {
         while(!qu.isEmpty()){
             int size = qu.size();
             double local = 0f;
-            int n = size;
             for(int i = 0; i < size; i++){
                 TreeNode temp = qu.poll();
                 local = local + Double.valueOf(temp.val);
@@ -42,7 +41,7 @@ public class AverageLevelsInBinaryTree {
                     qu.offer(temp.right);
                 }
             }
-            res.add(local/n);
+            res.add(local/size);
         }
         return res;
     }

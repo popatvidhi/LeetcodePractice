@@ -8,7 +8,7 @@ public class TrappingRainWater {
         System.out.println(trap2(height));
     }
 
-    //Time - O(n)    Space - O(1)
+    //Time - O(n)    Space - O(n)
     public static int trap1(int[] height) {
         int n = height.length;
         int[] maxLeft = new int[n];
@@ -37,7 +37,7 @@ public class TrappingRainWater {
         return total;
     }
 
-    //Time - O(n)    Space - O(n)
+    //Time - O(n)    Space - O(1)
     public static int trap2(int[] height) {
         if(height == null || height.length == 0){
             return  0;
