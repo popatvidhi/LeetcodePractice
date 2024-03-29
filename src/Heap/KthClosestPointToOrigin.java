@@ -20,7 +20,7 @@ public class KthClosestPointToOrigin {
     public static int[][] kClosest(int[][] points, int k) {
         PriorityQueue<Pair> minHeap = new PriorityQueue<>(Comparator.comparingInt(p -> p.distance));
         for(int[] p : points){
-            minHeap.offer(new Pair(findDisatnce(p[0], p[1]), p[0], p[1]));
+            minHeap.offer(new Pair(findDistance(p[0], p[1]), p[0], p[1]));
         }
         int[][] res = new int[k][2];
         int index = 0;
@@ -33,7 +33,7 @@ public class KthClosestPointToOrigin {
         return res;
     }
 
-    public static int findDisatnce(int x, int y){
+    public static int findDistance(int x, int y){
         return (x * x) + (y * y);
     }
 
