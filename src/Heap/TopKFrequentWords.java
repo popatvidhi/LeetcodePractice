@@ -34,9 +34,8 @@ public class TopKFrequentWords {
         }
         List<String> res = new ArrayList<>();
         while(!pq.isEmpty()){
-            res.add(pq.poll());
+            res.add(0, pq.poll());
         }
-        Collections.reverse(res);
         return res;
     }
 }
