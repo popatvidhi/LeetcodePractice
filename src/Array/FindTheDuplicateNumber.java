@@ -5,6 +5,7 @@ public class FindTheDuplicateNumber {
     public static void main(String args[]){
         int[] nums = {1,3,4,2,2};
         System.out.println(findDuplicate(nums));
+        System.out.println(findDuplicateBooleanArray(nums));
     }
 
     public static int findDuplicate(int[] nums) {
@@ -21,5 +22,17 @@ public class FindTheDuplicateNumber {
             fast = nums[fast];
         }
         return fast;
+    }
+
+    public static int findDuplicateBooleanArray(int[] nums) {
+        boolean[] exsists = new boolean[nums.length];
+        for(int i = 0; i < nums.length; i++){
+            if(exsists[nums[i]]){
+                return nums[i];
+            }else{
+                exsists[nums[i]] = true;
+            }
+        }
+        return -1;
     }
 }
